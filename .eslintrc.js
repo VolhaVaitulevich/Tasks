@@ -9,12 +9,20 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'prettier',
 	],
-	overrides: [],
+	overrides: [
+		{
+			"files": ["*.ts", "*.tsx"],
+			"rules": {				
+				"@typescript-eslint/explicit-function-return-type": ["error"]
+			}
+		}
+	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
 	},
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	plugins: [],
@@ -24,11 +32,18 @@ module.exports = {
 =======
 	plugins: ['react', '@typescript-eslint'],
 >>>>>>> 30b3946 (Add eslint and prettier)
+=======
+	plugins: [],
+>>>>>>> e10a8e9 (Add explicit-function-return-type for .ts files)
 	rules: {
 		indent: ['error', 'tab'],
 		'linebreak-style': ['error', 'windows'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
+<<<<<<< HEAD
 		'@typescript-eslint/explicit-function-return-type': 'error',
+=======
+		"@typescript-eslint/explicit-function-return-type": "off"
+>>>>>>> e10a8e9 (Add explicit-function-return-type for .ts files)
 	},
 };
