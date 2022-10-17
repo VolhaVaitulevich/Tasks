@@ -13,7 +13,14 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'prettier',
 	],
-	overrides: [],
+	overrides: [
+		{
+			"files": ["*.ts", "*.tsx"],
+			"rules": {				
+				"@typescript-eslint/explicit-function-return-type": ["error"]
+			}
+		}
+	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
