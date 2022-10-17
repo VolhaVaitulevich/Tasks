@@ -7,24 +7,19 @@ const adjectives = {
   f: "adjective",
 };
 
-interface AdjectivesObject {
-  [key: string]: string;
-}
-
-interface NumberOfAdjObject {
-  [key: string]: number;
-}
-
-const countNumberOfOccurrences = (adj: AdjectivesObject) => {
+const countNumberOfOccurrences = (adj: Record<string, string>) => {
   let arr = Object.values(adj);
-  return arr.reduce((acc: NumberOfAdjObject, adjective): NumberOfAdjObject => {
-    if (acc.hasOwnProperty(adjective)) {
-      acc[adjective] += 1;
-    } else {
-      acc[adjective] = 1;
-    }
-    return acc;
-  }, {});
+  return arr.reduce(
+    (acc: Record<string, number>, adjective): Record<string, number> => {
+      if (acc.hasOwnProperty(adjective)) {
+        acc[adjective] += 1;
+      } else {
+        acc[adjective] = 1;
+      }
+      return acc;
+    },
+    {}
+  );
 };
 
 console.log(countNumberOfOccurrences(adjectives));
