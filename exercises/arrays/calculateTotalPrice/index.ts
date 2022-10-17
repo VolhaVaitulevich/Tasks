@@ -3,14 +3,17 @@ const groceries = [
   { product: "Lollipop", quantity: 1, price: 0.2 },
 ];
 
-const getTotalPrice = (groceries: Record<string, any>[]): number => {
-  return groceries.reduce(
-    (acc: number, products: Record<string, number>): number => {
-      acc += products.quantity * products.price;
-      return +acc.toFixed(2);
-    },
-    0
-  );
+interface IGrocerie {
+  product: string;
+  quantity: number;
+  price: number;
+}
+
+const getTotalPrice = (groceries: Array<IGrocerie>): number => {
+  return groceries.reduce((acc: number, product): number => {
+    acc += product.quantity * product.price;
+    return +acc.toFixed(2);
+  }, 0);
 };
 
 console.log(getTotalPrice(groceries));
