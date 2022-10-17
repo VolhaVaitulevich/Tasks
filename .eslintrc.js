@@ -10,17 +10,25 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'prettier',
 	],
-	overrides: [],
+	overrides: [
+		{
+			"files": ["*.ts", "*.tsx"],
+			"rules": {				
+				"@typescript-eslint/explicit-function-return-type": ["error"]
+			}
+		}
+	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
 	},
-	plugins: ['react', '@typescript-eslint'],
+	plugins: [],
 	rules: {
 		indent: ['error', 'tab'],
 		'linebreak-style': ['error', 'windows'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
+		"@typescript-eslint/explicit-function-return-type": "off"
 	},
 };
