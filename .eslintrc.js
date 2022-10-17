@@ -6,10 +6,6 @@ module.exports = {
 	},
 	extends: [
 		'eslint:recommended',
-<<<<<<< HEAD
-=======
-		'plugin:react/recommended',
->>>>>>> 2fb7ef7 (Add eslint and prettier)
 		'plugin:@typescript-eslint/recommended',
 		'prettier',
 	],
