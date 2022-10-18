@@ -1,3 +1,3 @@
 ## Rewrite array methods
 
-Rewrite methods reduce and map.
+Rewrite methods `reduce` and `map`.
