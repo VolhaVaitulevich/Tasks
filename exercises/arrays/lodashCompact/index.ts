@@ -1,4 +1,4 @@
-type FalsyValues = undefined | null | 0 | "" | `` | -0 | 0n;
+type FalsyValues = undefined | null | 0 | "" | false;
 
 const arrTask2 = [0, 1, false, , -0, 2, "", 3];
 
