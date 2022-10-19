@@ -9,6 +9,7 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'prettier',
 	],
+<<<<<<< HEAD
 	overrides: [
 		{
 			files: ['*.ts', '*.tsx'],
@@ -17,6 +18,9 @@ module.exports = {
 			},
 		},
 	],
+=======
+	overrides: [],
+>>>>>>> 4722547 (Update eslint)
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
@@ -28,6 +32,10 @@ module.exports = {
 		'linebreak-style': ['error', 'windows'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
+<<<<<<< HEAD
 		'@typescript-eslint/explicit-function-return-type': 'off',
+=======
+		'@typescript-eslint/explicit-function-return-type': 'error',
+>>>>>>> 4722547 (Update eslint)
 	},
 };
