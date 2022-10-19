@@ -12,12 +12,12 @@ interface IGrocerie {
 }
 
 const getTotalPrice = (groceries: Array<IGrocerie>): number => {
-  return groceries.reduce((acc: number, product): number => {
-    acc = Number(
-      Big(acc).plus(Big(product.quantity).times(Big(product.price)))
-    );
-    return acc;
-  }, 0);
+  return Number(
+    groceries.reduce((acc: Big, product): Big => {
+      acc = acc.plus(Big(product.quantity).times(Big(product.price)));
+      return acc;
+    }, Big(0))
+  );
 };
 
 console.log(getTotalPrice(groceries));
