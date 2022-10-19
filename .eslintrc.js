@@ -9,14 +9,7 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'prettier',
 	],
-	overrides: [
-		{
-			"files": ["*.ts", "*.tsx"],
-			"rules": {				
-				"@typescript-eslint/explicit-function-return-type": ["error"]
-			}
-		}
-	],
+	overrides: [],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
@@ -40,10 +33,6 @@ module.exports = {
 		'linebreak-style': ['error', 'windows'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
-<<<<<<< HEAD
 		'@typescript-eslint/explicit-function-return-type': 'error',
-=======
-		"@typescript-eslint/explicit-function-return-type": "off"
->>>>>>> e10a8e9 (Add explicit-function-return-type for .ts files)
 	},
 };
