@@ -9,14 +9,7 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'prettier',
 	],
-	overrides: [
-		{
-			"files": ["*.ts", "*.tsx"],
-			"rules": {				
-				"@typescript-eslint/explicit-function-return-type": ["error"]
-			}
-		}
-	],
+	overrides: [],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
@@ -28,6 +21,6 @@ module.exports = {
 		'linebreak-style': ['error', 'windows'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
-		"@typescript-eslint/explicit-function-return-type": "off"
+		'@typescript-eslint/explicit-function-return-type': 'error',
 	},
 };
