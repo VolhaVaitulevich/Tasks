@@ -15,11 +15,7 @@ module.exports = {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
 	},
-<<<<<<< HEAD
 	plugins: [],
-=======
-	plugins: ['react', '@typescript-eslint'],
->>>>>>> 2fb7ef7 (Add eslint and prettier)
 	rules: {
 		indent: ['error', 'tab'],
 		'linebreak-style': ['error', 'windows'],
