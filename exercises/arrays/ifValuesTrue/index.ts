@@ -1,4 +1,4 @@
-const allTruthy1 = <T>(...args: T[]): boolean => {
+const allTruthy1 = <T>(...args: T[]) => {
 	return args.every(Boolean);
 };
 
