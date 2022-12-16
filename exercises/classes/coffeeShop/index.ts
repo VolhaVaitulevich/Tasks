@@ -27,7 +27,7 @@ class CoffeeShop {
 		this.createMenuArrOfObj = this.createMenuArrOfObj.bind(this);
 	}
 
-	addOrder(orderName: string) {
+	addOrder(orderName: string): void {
 		const menuArrOfObj = this.createMenuArrOfObj();
 
 		//check if this item exists in menu
@@ -39,7 +39,7 @@ class CoffeeShop {
 		}
 	}
 
-	fulfillOrder() {
+	fulfillOrder(): void {
 		if (this.orders.length === 0) {
 			console.log('All orders have been fulfilled!');
 		} else {
@@ -47,11 +47,11 @@ class CoffeeShop {
 		}
 	}
 
-	listOrders() {
+	listOrders(): void {
 		console.log(this.orders);
 	}
 
-	dueAmount() {
+	dueAmount(): void {
 		const menuArrOfObj = this.createMenuArrOfObj();
 
 		console.log(
@@ -65,7 +65,7 @@ class CoffeeShop {
 		);
 	}
 
-	cheapestItem() {
+	cheapestItem(): void {
 		const menuArrOfObj = this.createMenuArrOfObj();
 
 		//find minimal praice among all menu items
@@ -78,7 +78,7 @@ class CoffeeShop {
 		);
 	}
 
-	drinksOnly() {
+	drinksOnly(): void {
 		const menuArrOfObj = this.createMenuArrOfObj();
 		console.log(
 			menuArrOfObj
@@ -91,7 +91,7 @@ class CoffeeShop {
 		);
 	}
 
-	foodOnly() {
+	foodOnly(): void {
 		const menuArrOfObj = this.createMenuArrOfObj();
 		console.log(
 			menuArrOfObj
@@ -104,7 +104,7 @@ class CoffeeShop {
 		);
 	}
 
-	createMenuArrOfObj() {
+	createMenuArrOfObj(): Array<IMenu> {
 		return this.menu.map((menuItem: [string, string, number]) => ({
 			item: menuItem[0],
 			type: menuItem[1],
