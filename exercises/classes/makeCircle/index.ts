@@ -4,10 +4,10 @@ class Circle {
 		this.radius = radius;
 	}
 
-	getArea() {
+	getArea(): number {
 		return Math.PI * Math.pow(this.radius, 2);
 	}
-	getperimeter() {
+	getperimeter(): number {
 		return Math.PI * this.radius * 2;
 	}
 }
