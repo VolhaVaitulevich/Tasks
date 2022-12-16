@@ -4,7 +4,7 @@ interface IMenu {
 	price: number;
 }
 
-class CoffeeShop {
+export class CoffeeShop {
 	name: string;
 	menu: Array<[string, string, number]>;
 	orders: Array<String>;
