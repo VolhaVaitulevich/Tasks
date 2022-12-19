@@ -32,33 +32,33 @@ class Pagination {
 		this.goToPage = this.goToPage.bind(this);
 	}
 
-	prevPage() {
+	prevPage(): void {
 		if (this.currentPage !== 1) {
 			this.currentPage = this.currentPage - 1;
 		}
 	}
 
-	nextPage() {
+	nextPage(): void {
 		if (this.currentPage < this.totalPages) {
 			this.currentPage = this.currentPage + 1;
 		}
 	}
 
-	firstPage() {
+	firstPage(): void {
 		this.currentPage = 1;
 	}
 
-	lastPage() {
+	lastPage(): void {
 		this.currentPage = this.totalPages;
 	}
 
-	goToPage(page: number) {
+	goToPage(page: number): void {
 		if (page <= this.totalPages && page > 0) {
 			this.currentPage = page;
 		}
 	}
 
-	getVisibleItems() {
+	getVisibleItems(): void {
 		const startIndex = (this.currentPage - 1) * this.pageSize;
 		const endIndex = this.currentPage * this.pageSize;
 		console.log(this.items.slice(startIndex, endIndex));
