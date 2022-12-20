@@ -1,10 +1,10 @@
-class Pagination {
-	items: Array<any>;
+class Pagination<T> {
+	items: Array<T>;
 	pageSize: number;
 	totalPages: number;
 	currentPage: number;
 
-	constructor(items: Array<any>, pageSize: number) {
+	constructor(items: Array<T>, pageSize: number) {
 		if (items) {
 			this.items = items;
 		} else {
@@ -23,44 +23,43 @@ class Pagination {
 			this.totalPages = 1;
 		}
 		this.currentPage = 1;
-
-		this.nextPage = this.nextPage.bind(this);
-		this.prevPage = this.prevPage.bind(this);
-		this.firstPage = this.firstPage.bind(this);
-		this.lastPage = this.lastPage.bind(this);
-		this.getVisibleItems = this.getVisibleItems.bind(this);
-		this.goToPage = this.goToPage.bind(this);
 	}
 
-	prevPage(): void {
+	prevPage = (): Pagination<T> => {
 		if (this.currentPage !== 1) {
 			this.currentPage = this.currentPage - 1;
 		}
-	}
+		return this;
+	};
 
-	nextPage(): void {
+	nextPage = (): Pagination<T> => {
 		if (this.currentPage < this.totalPages) {
 			this.currentPage = this.currentPage + 1;
 		}
-	}
+		return this;
+	};
 
-	firstPage(): void {
+	firstPage = (): Pagination<T> => {
 		this.currentPage = 1;
-	}
+		return this;
+	};
 
-	lastPage(): void {
+	lastPage = (): Pagination<T> => {
 		this.currentPage = this.totalPages;
-	}
+		return this;
+	};
 
-	goToPage(page: number): void {
+	goToPage = (page: number): Pagination<T> => {
 		if (page <= this.totalPages && page > 0) {
 			this.currentPage = page;
 		}
-	}
+		return this;
+	};
 
-	getVisibleItems(): void {
+	getVisibleItems = (): Array<T> => {
 		const startIndex = (this.currentPage - 1) * this.pageSize;
 		const endIndex = this.currentPage * this.pageSize;
-		console.log(this.items.slice(startIndex, endIndex));
-	}
+		const visibleItems = this.items.slice(startIndex, endIndex);
+		return visibleItems;
+	};
 }
