@@ -1,21 +1,17 @@
 interface IMenu {
 	item: string;
-	type: string;
+	type: 'drink' | 'food';
 	price: number;
 }
 
 export class CoffeeShop {
 	name: string;
-	menu: Array<[string, string, number]>;
+	menu: Array<IMenu>;
 	orders: Array<String>;
 
-	constructor(
-		name: string,
-		menu: Array<[string, string, number]>,
-		orders: Array<String>,
-	) {
+	constructor(name: string, menu: Array<IMenu>, orders: Array<String>) {
 		this.name = name;
-		this.menu = JSON.parse(JSON.stringify(menu));
+		this.menu = menu;
 		this.orders = [...orders];
 		this.addOrder = this.addOrder.bind(this);
 		this.fulfillOrder = this.fulfillOrder.bind(this);
@@ -24,91 +20,63 @@ export class CoffeeShop {
 		this.cheapestItem = this.cheapestItem.bind(this);
 		this.drinksOnly = this.drinksOnly.bind(this);
 		this.foodOnly = this.foodOnly.bind(this);
-		this.createMenuArrOfObj = this.createMenuArrOfObj.bind(this);
 	}
 
-	addOrder(orderName: string): void {
-		const menuArrOfObj = this.createMenuArrOfObj();
-
-		//check if this item exists in menu
-		if (menuArrOfObj.find(menuObject => menuObject.item === orderName)) {
+	addOrder(orderName: string): string {
+		let addResult = '';
+		if (this.menu.find(menuObject => menuObject.item === orderName)) {
 			this.orders.push(orderName);
-			console.log('Order added');
+			addResult = 'Order added';
 		} else {
-			console.log('This item is currently unavailable!');
+			addResult = 'This item is currently unavailable!';
 		}
+		return addResult;
 	}
 
-	fulfillOrder(): void {
+	fulfillOrder(): string {
+		let fulfillResult = '';
 		if (this.orders.length === 0) {
-			console.log('All orders have been fulfilled!');
+			fulfillResult = 'All orders have been fulfilled!';
 		} else {
-			console.log(`The ${this.orders.shift()} have been fulfilled`);
+			fulfillResult = `The ${this.orders.shift()} have been fulfilled`;
 		}
+		return fulfillResult;
 	}
 
-	listOrders(): void {
-		console.log(this.orders);
+	listOrders(): Array<String> {
+		return this.orders;
 	}
 
-	dueAmount(): void {
-		const menuArrOfObj = this.createMenuArrOfObj();
-
-		console.log(
-			Math.round(
-				this.orders.reduce((totalOrderPrice, orderItem) => {
-					return (totalOrderPrice +=
-						menuArrOfObj.find(menuObject => menuObject.item === orderItem)
-							?.price ?? 0);
-				}, 0),
-			),
-		);
+	dueAmount(): number {
+		const dueOrderAmount = this.orders.reduce((totalOrderPrice, orderItem) => {
+			return (totalOrderPrice +=
+				this.menu.find(menuObject => menuObject.item === orderItem)?.price ??
+				0);
+		}, 0);
+		return dueOrderAmount;
 	}
 
-	cheapestItem(): void {
-		const menuArrOfObj = this.createMenuArrOfObj();
-
-		//find minimal praice among all menu items
-		const minPrice = menuArrOfObj.reduce(
+	cheapestItem(): IMenu | {} {
+		const minPrice = this.menu.reduce(
 			(min, menuObject) => (menuObject.price < min ? menuObject.price : min),
-			menuArrOfObj[0].price,
+			this.menu[0].price,
 		);
-		console.log(
-			menuArrOfObj.find(menuObject => menuObject.price === minPrice)?.item,
-		);
+		const minPriceItem: IMenu | {} =
+			this.menu.find(menuObject => menuObject.price === minPrice)?.item ?? {};
+		return minPriceItem;
 	}
 
-	drinksOnly(): void {
-		const menuArrOfObj = this.createMenuArrOfObj();
-		console.log(
-			menuArrOfObj
-				.filter(menuObject => {
-					if (menuObject.type === 'drink') {
-						return menuObject.item;
-					}
-				})
-				.map(menuObject => menuObject.item),
-		);
+	drinksOnly(): String[] {
+		const listOfDrinks = this.menu
+			.filter(menuObject => menuObject.type === 'drink')
+			.map(menuObject => menuObject.item);
+		return listOfDrinks;
 	}
 
-	foodOnly(): void {
-		const menuArrOfObj = this.createMenuArrOfObj();
-		console.log(
-			menuArrOfObj
-				.filter(menuObject => {
-					if (menuObject.type === 'food') {
-						return menuObject.item;
-					}
-				})
-				.map(menuObject => menuObject.item),
-		);
-	}
-
-	createMenuArrOfObj(): Array<IMenu> {
-		return this.menu.map((menuItem: [string, string, number]) => ({
-			item: menuItem[0],
-			type: menuItem[1],
-			price: menuItem[2],
-		}));
+	foodOnly(): String[] {
+		const listOfFood = this.menu
+			.filter(menuObject => menuObject.type === 'food')
+			.map(menuObject => menuObject.item);
+		return listOfFood;
 	}
 }
