@@ -22,14 +22,5 @@ module.exports = {
 		quotes: ['error', 'single'],
 		semi: ['error', 'always'],
 		'@typescript-eslint/explicit-function-return-type': 'error',
-		'@typescript-eslint/ban-types': [
-			'error',
-			{
-				extendDefaults: true,
-				types: {
-					'{}': false,
-				},
-			},
-		],
 	},
 };

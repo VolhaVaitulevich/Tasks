@@ -3,7 +3,6 @@ interface IMenu {
 	type: 'drink' | 'food';
 	price: number;
 }
-
 export class CoffeeShop {
 	name: string;
 	menu: Array<IMenu>;
@@ -56,24 +55,24 @@ export class CoffeeShop {
 		return dueOrderAmount;
 	}
 
-	cheapestItem(): IMenu | {} {
+	cheapestItem(): string {
 		const minPrice = this.menu.reduce(
 			(min, menuObject) => (menuObject.price < min ? menuObject.price : min),
 			this.menu[0].price,
 		);
-		const minPriceItem: IMenu | {} =
-			this.menu.find(menuObject => menuObject.price === minPrice)?.item ?? {};
-		return minPriceItem;
+		const minPriceName: string =
+			this.menu.find(menuObject => menuObject.price === minPrice)?.item ?? '';
+		return minPriceName;
 	}
 
-	drinksOnly(): String[] {
+	drinksOnly(): string[] {
 		const listOfDrinks = this.menu
 			.filter(menuObject => menuObject.type === 'drink')
 			.map(menuObject => menuObject.item);
 		return listOfDrinks;
 	}
 
-	foodOnly(): String[] {
+	foodOnly(): string[] {
 		const listOfFood = this.menu
 			.filter(menuObject => menuObject.type === 'food')
 			.map(menuObject => menuObject.item);
