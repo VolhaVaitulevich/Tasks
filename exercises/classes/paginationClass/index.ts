@@ -5,23 +5,9 @@ class Pagination<T> {
 	currentPage: number;
 
 	constructor(items: Array<T>, pageSize: number) {
-		if (items) {
-			this.items = items;
-		} else {
-			this.items = [];
-		}
-
-		if (pageSize) {
-			this.pageSize = pageSize;
-		} else {
-			this.pageSize = 10;
-		}
-
-		if (this.items.length > 0 && this.items !== undefined) {
-			this.totalPages = Math.ceil(this.items.length / pageSize);
-		} else {
-			this.totalPages = 1;
-		}
+		this.items = items ?? [];
+		this.pageSize = pageSize ?? 10;
+		this.totalPages = Math.ceil(this.items.length / pageSize) ?? 1;
 		this.currentPage = 1;
 	}
 
