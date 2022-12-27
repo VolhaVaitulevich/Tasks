@@ -48,21 +48,21 @@ export class CoffeeShop {
 
 	dueAmount(): number {
 		const dueOrderAmount = this.orders.reduce((totalOrderPrice, orderItem) => {
-			return (totalOrderPrice +=
-				this.menu.find(menuObject => menuObject.item === orderItem)?.price ??
-				0);
+			return (
+				totalOrderPrice +
+				(this.menu.find(menuObject => menuObject.item === orderItem)?.price ??
+					0)
+			);
 		}, 0);
 		return dueOrderAmount;
 	}
 
 	cheapestItem(): string {
-		const minPrice = this.menu.reduce(
-			(min, menuObject) => (menuObject.price < min ? menuObject.price : min),
-			this.menu[0].price,
+		const minPriceObj = this.menu.reduce(
+			(acc, menuObject) => (menuObject.price < acc.price ? menuObject : acc),
+			this.menu[0],
 		);
-		const minPriceName: string =
-			this.menu.find(menuObject => menuObject.price === minPrice)?.item ?? '';
-		return minPriceName;
+		return minPriceObj.item;
 	}
 
 	drinksOnly(): string[] {
